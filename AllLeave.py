@@ -15,6 +15,8 @@ import traceback
 import socket
 socket.setdefaulttimeout(15)
 
+# 성건오빠 응기잇
+print('')
 driver = webdriver.Chrome()
 driver.get("https://www.google.co.kr/imghp?hl=ko&tab=wi&authuser=0&ogbl")
 elem = driver.find_element_by_name("q")
