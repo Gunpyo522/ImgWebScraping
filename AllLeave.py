@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions
@@ -17,8 +19,9 @@ socket.setdefaulttimeout(15)
 
 driver = webdriver.Chrome()
 driver.get("https://www.google.co.kr/imghp?hl=ko&tab=wi&authuser=0&ogbl")
-elem = driver.find_element_by_name("q")
-elem.send_keys("paris")
+
+elem = driver.find_element(By.NAME, "q")
+elem.send_keys("사그라다 파밀리아")
 elem.send_keys(Keys.RETURN)
 
 SCROLL_PAUSE_TIME = 2
@@ -38,14 +41,14 @@ while True:
             break
     last_height = new_height
 
-images = driver.find_elements_by_css_selector(".rg_i.Q4LuWd")
+images = driver.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")
 count = 1
 for image in images:
     try:
         image.click()
         time.sleep(1)
         try:
-            element = driver.find_element_by_xpath('/html/body/div[2]/c-wiz/div[3]/div[2]/div[3]/div[2]/div[2]/div[2]/div[2]/c-wiz/div/div/div/div[3]/div[1]/a/img[1]')
+            element = driver.find_element(By.XPATH, '//*[@id="Sva75c"]/div[2]/div[2]/div[2]/div[2]/c-wiz/div/div/div/div[3]/div[1]/a/img[1]')
             imgUrl = element.get_attribute("src")
         except:
             print('안먹힘안먹힘안먹힘안먹힘')
@@ -54,7 +57,7 @@ for image in images:
         opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
         urllib.request.install_opener(opener)
 
-        file_path = f"이유진의 부탁4/{count}.jpg"
+        file_path = f"사그라다 파밀리아/{count}.jpg"
         retry = 1
         while(retry < 3):
             try:
